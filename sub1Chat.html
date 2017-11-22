@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="css/main.css"/>
+	</head>
+
+	<body>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript">mui.init()</script>
+		<header class="mui-bar mui-bar-nav">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title">标题</h1>
+		</header>
+		<div class="mui-content">
+		    <div class="msg">聊天消息</div>
+			<button type="button" id="gallery" class="mui-btn mui-btn-blue">选择照片</button>
+			<button type="button" id="camera" class="mui-btn mui-btn-yellow">打开摄像头</button>
+		</div>
+	</body>
+
+</html>
+<script type="text/javascript">mui.plusReady(function() {
+	var cw = plus.webview.currentWebview();
+	var titleName = cw.title;
+	var header = document.querySelector(".mui-title");
+	header.innerText = titleName;
+})
+
+	var msg = document.querySelector(".msg");
+	var galleryBtn = document.querySelector("#gallery");
+	var cameraBtn = document.querySelector("#camera");
+	galleryBtn.addEventListener("tap", function() {
+	//调用相册
+	plus.gallery.pick(
+		function(path) {
+			var img = "";
+			for(var i in path.files) {
+				img += "<img width=100 height=100 src=" + path.files[i] + "/>"
+				msg.innerHTML = img;
+			}
+			
+		},
+		function(error) {
+			//选取失败，输出错误信息
+			msg.innerHTML = error.message;
+		},
+		{	//设置只选取图片，可以多张
+			filter: "image",
+			multiple: true
+		}
+		)
+	});
+	cameraBtn.addEventListener("tap",function() {
+		var cameraDom = plus.camera.getCamera(1);//1取到主摄像头
+		cameraDom.captureImage(
+			function(path) {
+				var url = "file://"+plus.io.convertLocalFileSystemURL(path);
+				var img = "<img width=200 height=200 src="+url+"/>";
+				msg.innerHTML = img;
+			}
+		)
+		
+	})
+</script>

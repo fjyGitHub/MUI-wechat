@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+	</head>
+	<style type="text/css">
+		.mui-table-view-cell{
+			padding: 5px 15px;
+		}
+		.mui-ellipsis{
+			line-height: 42px;
+			font-size: 16px;
+			color: #333;
+		}
+	</style>
+	<body>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init()
+		</script>
+		<div class="mui-content">
+		    <ul class="mui-table-view">
+		        <li class="mui-table-view-cell mui-media" id="pyq">
+		                <img class="mui-media-object mui-pull-left" src="http://placehold.it/40x30">
+		                <p class="mui-ellipsis">朋友圈</p>
+		        </li>
+		        <li class="mui-table-view-cell mui-media">
+		                <img class="mui-media-object mui-pull-left" src="http://placehold.it/40x30">
+		                <p class="mui-ellipsis">扫一扫</p>
+		        </li>
+		        <li class="mui-table-view-cell mui-media">
+		                <img class="mui-media-object mui-pull-left" src="http://placehold.it/40x30">
+		                <p class="mui-ellipsis">摇一摇</p>
+		        </li>
+		        <li class="mui-table-view-cell mui-media">
+		                <img class="mui-media-object mui-pull-left" src="http://placehold.it/40x30">
+		                <p class="mui-ellipsis">漂流瓶</p>
+		        </li>
+		        <li class="mui-table-view-cell mui-media">
+		                <img class="mui-media-object mui-pull-left" src="http://placehold.it/40x30">
+		                <p class="mui-ellipsis">附近的人</p>
+		        </li>
+		    </ul>
+		</div>
+	</body>
+<script type="text/javascript">
+	var pyqDom = document.querySelector("#pyq");
+	pyqDom.addEventListener("tap",function() {
+		mui.openWindow({
+			url: "sub3_pyq_header.html",
+			id: "sub3_pyq_header.html"
+		})
+	})
+</script>
+</html>

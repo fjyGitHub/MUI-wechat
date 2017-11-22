@@ -1,0 +1,31 @@
+{
+	"index.html": {
+		"resources": [
+			"sub1.html"
+		],
+		"refer": [
+			"sub4.html",
+			"sub3.html",
+			"sub2.html",
+			"sub1.html"
+		]
+	},
+	"sub1.html": {
+		"refer": [
+			"sub1Chat.html"
+		]
+	},
+	"sub3.html": {
+		"refer": [
+			"sub3_pyq_header.html"
+		]
+	},
+	"sub3_pyq_header.html": {
+		"resources": [
+			"sub3_pyq_list.html"
+		],
+		"refer": [
+			"sub3_pyq_list.html"
+		]
+	}
+}

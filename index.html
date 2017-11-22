@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="js/mui.min.js"></script>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="css/main.css"/>
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+    </script>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav">
+	    <h1 class="mui-title">WeChat</h1>
+	</header>
+	
+	    <ul class="mui-table-view">
+	        <li class="mui-table-view-cell mui-media">
+	            <a href="javascript:;">
+	                <img class="mui-media-object mui-pull-left" src="http://placehold.it/40x30">
+	                <div class="mui-media-body">
+	                    幸福
+	                    <p class="mui-ellipsis">能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？</p>
+	                </div>
+	            </a>
+	        </li>
+	        <li class="mui-table-view-cell mui-media">
+	            <a href="javascript:;">
+	                <img class="mui-media-object mui-pull-left" src="http://placehold.it/40x30">
+	                <div class="mui-media-body">
+	                    木屋
+	                    <p class="mui-ellipsis">想要这样一间小木屋，夏天挫冰吃瓜，冬天围炉取暖.</p>
+	                </div>
+	            </a>
+	        </li>
+	        <li class="mui-table-view-cell mui-media">
+	            <a href="javascript:;">
+	                <img class="mui-media-object mui-pull-left" src="http://placehold.it/40x30">
+	                <div class="mui-media-body">
+	                    CBD
+	                    <p class="mui-ellipsis">烤炉模式的城，到黄昏，如同打翻的调色盘一般.</p>
+	                </div>
+	            </a>
+	        </li>
+	    </ul>
+	</div>
+	<nav class="mui-bar mui-bar-tab">
+	    <a class="mui-tab-item mui-active" href="sub1.html">
+	        <span class="mui-icon mui-icon-weixin"></span>
+	        <span class="mui-tab-label">微信</span>
+	    </a>
+	    <a class="mui-tab-item" href="sub2.html">
+	        <span class="mui-icon mui-icon-contact"></span>
+	        <span class="mui-tab-label">通讯录</span>
+	    </a>
+	    <a class="mui-tab-item" href="sub3.html">
+	        <span class="mui-icon mui-icon-paperplane"></span>
+	        <span class="mui-tab-label">发现</span>
+	    </a>
+	    <a class="mui-tab-item" href="sub4.html">
+	        <span class="mui-icon mui-icon-person"></span>
+	        <span class="mui-tab-label">我的</span>
+	    </a>
+	</nav>
+</body>
+</html>
+<script>
+	var subPages = ['sub1.html','sub2.html','sub3.html','sub4.html'];
+	var subPagesStyle = {
+		top: '44px',
+		bottom: '50px'
+	}
+	mui.plusReady(function() {
+		var self = plus.webview.currentWebview();
+		for(var i=0;i<subPages.length;i++) {
+			var sub = plus.webview.create(subPages[i],subPages[i],subPagesStyle);
+			sub.hide();
+			self.append(sub);
+		}
+		plus.webview.show(subPages[0]);
+	})
+	//点击底部导航切换
+	mui(".mui-bar-tab").on("tap","a",function(e) {
+		var currPage = this.getAttribute("href");
+		plus.webview.show(currPage,"fade-in",300);
+	})
+	//实现安卓手机连续按两次返回键退出程序
+	var first = null;
+	mui.back = function() {
+		if(!first) {
+			first = new Date().getTime();
+			mui.toast("再按一次退出应用程序")
+			setTimeout(function() {
+				first = null;
+			},1000)
+		}else{
+			if(new Date().getTime() - first < 1000) {
+				plus.runtime.quit();
+			}
+		}
+	}
+</script>
